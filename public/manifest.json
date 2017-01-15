@@ -1,0 +1,13 @@
+{
+  "short_name": "Orami React",
+  "name": "Catalog for orami product",
+  "icons": [
+    {
+      "src": "orami-icon4.png",
+      "type": "image/png",
+      "sizes": "165x165"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "./"
+}
