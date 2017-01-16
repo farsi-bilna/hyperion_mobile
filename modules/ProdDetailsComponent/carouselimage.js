@@ -5,7 +5,7 @@ import Slider from 'react-slick'
 
 var CarouselList = React.createClass({
   render: function () {
-    if (this.props.data){
+    if (this.props.data.label){
       var carouselNodes = this.props.data.map(function(image, index){
         return (
             <div key={index}><img src={image.image_resize.detail} /></div>

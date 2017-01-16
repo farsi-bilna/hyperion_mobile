@@ -3,8 +3,7 @@ import Remarkable from 'remarkable'
 import NavLink from './NavLink'
 import CarouselPD from './ProdDetailsComponent/carouselimage'
 import Media from 'react-bootstrap/lib/Media';
-import Tabs from 'react-bootstrap/lib/Tabs';
-import Tab from 'react-bootstrap/lib/Tab';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Glyphicon from 'react-bootstrap/lib/Glyphicon'
 
 {/*var TabsProduct = React.createClass({
@@ -65,11 +64,18 @@ var ProductBox = React.createClass({
       if (this.state.data.is_in_stock){
         stok = <span><strong>In stok</strong></span>
       }
-      var tabsNodes = this.state.detailInfo && Object.keys(this.state.detailInfo).map(function(tabdata, index) {
+      var tabsContent = this.state.detailInfo && Object.values(this.state.detailInfo).map(function(tabdata, index) {
         console.log(tabdata);
         return (
-            <Tab eventKey={index} key={index} title={tabdata}>
+            <TabPanel>
               {tabdata}
+            </TabPanel>
+        );
+      });
+      var tabsHeader = this.state.detailInfo && Object.keys(this.state.detailInfo).map(function(tabheader, index) {
+        return (
+            <Tab>
+              {tabheader}
             </Tab>
         );
       });
@@ -88,8 +94,11 @@ var ProductBox = React.createClass({
             {this.state.data.short_desc}
             {/*<TabsProduct tabsdata={this.state.detailInfo}/>*/}
           </div>
-          <Tabs defaultActiveKey={0} id="uncontrolled-tab-example">
-            {tabsNodes}
+          <Tabs selectedIndex={0} >
+            <TabList>
+             {tabsHeader}
+            </TabList>
+            {tabsContent}
           </Tabs>
         </div>
       );
