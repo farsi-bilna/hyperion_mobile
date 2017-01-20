@@ -8,19 +8,13 @@ import ListGroup from 'react-bootstrap/lib/ListGroup';
 
 var CategorymenuBox = React.createClass({
   loadProductsFromServer: function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({
-          datalevel1: data
-        });
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    fetch(this.props.url)
+            .then( (response) => {
+                return response.json() })   
+                    .then( (data) => {
+                        this.setState({datalevel1: data});
+                        //console.log(data);
+                    });
   },
   getInitialState: function() {
     return {datalevel1: []};

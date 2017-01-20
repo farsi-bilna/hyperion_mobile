@@ -38,25 +38,10 @@ var Product = React.createClass({
 });
 
 var ProductBox = React.createClass({
-  /*loadProductsFromServer: function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type     : 'GET',
-      success: function(data) {
-        this.setState({dataHargaterbaik: data.featured['Harga Terbaik'],dataProdukpopuler : data.featured['Produk Populer']});
-        console.log(data);
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },*/
   getInitialState: function() {
     return {dataHargaterbaik: [],dataProdukpopuler:[]};
   },
   componentDidMount: function() {
-    /*this.loadProductsFromServer();*/
      fetch(this.props.url)
             .then( (response) => {
                 return response.json() })   

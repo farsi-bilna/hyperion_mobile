@@ -4,7 +4,7 @@ import PageHeader from './PageHeader';
 //import AppBar from './appBar.js';
 var css = require("./theme/main.scss");
 
-if ('serviceWorker' in navigator) {
+{/*if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js', {scope: './'})
   .then(function(reg) {
     // registration worked
@@ -13,7 +13,7 @@ if ('serviceWorker' in navigator) {
     // registration failed
     console.log('Registration failed with ' + error);
   });
-}
+}*/}
 
 export default React.createClass({
   render() {

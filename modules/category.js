@@ -52,12 +52,12 @@ var ProductBox = React.createClass({
   loadProductsFromServer: function() {
     $.ajax({
       url: this.props.url,
-      data     : {limit: this.props.perPage, page: this.state.page,attributes: this.props.att, sort: this.props.qsort, dir: this.props.qdir, price:this.props.qprice},
+      data     : {limit: this.props.perPage, page: this.state.page, attributes: this.props.att, sort: this.props.qsort, dir: this.state.dir, price:this.props.qprice},
       dataType: 'json',
       type     : 'GET',
       success: function(data) {
         this.setState({data: data.data, filteratt:data.filter.attributes, cat_name: data.title, pageNum: Math.ceil(data.total_count / this.props.perPage)});
-        //console.log(data);
+        console.log("load data");
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -65,7 +65,7 @@ var ProductBox = React.createClass({
     });
   },
   getInitialState: function() {
-    return {data: [], page : 0};
+    return {data: [], page : 0, dir : 'Desc'};
   },
   componentDidMount: function() {
     this.loadProductsFromServer();
@@ -77,7 +77,22 @@ var ProductBox = React.createClass({
 
     this.setState({page: page}, () => {
       this.loadProductsFromServer();
-      //console.log(selected);
+    });
+  },
+  ascHandle : function() {
+    console.log("props : " +this.props.qdir);
+    console.log("state :"+ this.state.dir);
+    let qdir = "Asc";
+    this.setState({dir: qdir}, () => {
+      this.loadProductsFromServer();
+    });
+  },
+  descHandle : function() {
+    console.log("props : " +this.props.qdir);
+    console.log("state :"+ this.state.dir);
+    let qdir = "Desc";
+    this.setState({dir: qdir}, () => {
+      this.loadProductsFromServer();
     });
   },
   render: function() {
@@ -86,6 +101,15 @@ var ProductBox = React.createClass({
         <div className="tag-title">
         <h3 className="title _h3">{this.state.cat_name}</h3>
         </div>
+        <div className="sorting container">
+          <div className="col-xs-6">
+            <NavLink to={{pathname: this.props.catpath, query:{dir:"asc"} }} onClick={(e)=>this.ascHandle(e)} >asc</NavLink>
+          </div>
+          <div className="col-xs-6">
+            <NavLink to={{pathname: this.props.catpath, query:{dir:"Desc"} }} onClick={(e)=>this.descHandle(e)} >Desc</NavLink>
+          </div>
+        </div>
+        <Filtercategory datafilteratt={this.state.filteratt} catpath = {this.props.catpath}/>
         <ProductList data={this.state.data} />
         <ReactPaginate previousLabel={"previous"}
                        nextLabel={"next"}
@@ -98,7 +122,6 @@ var ProductBox = React.createClass({
                        containerClassName={"pagination"}
                        subContainerClassName={"pages pagination"}
                        activeClassName={"active"} />
-        <Filtercategory datafilteratt={this.state.filteratt} catpath = {this.props.catpath}/>
       </div>
     );
   }
@@ -133,7 +156,6 @@ var filterprice = React.createClass({
   
 })
 var Filtercategory = React.createClass({
-  
   handlerfilterSubmit: function (e) {
     e.preventDefault();
     console.log(this.refs.check_me.checked);
@@ -141,7 +163,7 @@ var Filtercategory = React.createClass({
   },
   render: function() {
     const catpath = this.props.catpath;
-    console.log(catpath);
+    //console.log(catpath);
     if (this.props.datafilteratt) {
       var filterNodes = this.props.datafilteratt.map(function(filteratt, index) {
       //console.log(filteratt);
@@ -156,7 +178,7 @@ var Filtercategory = React.createClass({
           });
         }
         return (
-          <div>
+          <div className=" filterbox">
           {filteratt.code}
           {filterchildNodes}
           
@@ -177,13 +199,13 @@ var Filtercategory = React.createClass({
 export default React.createClass({
   render() {
     
-    //console.log(this.props);
+    console.log(this.props.location.query.dir);
     const { idcategory } = this.props.params;
     const { pathname } = this.props.location;
     const { query } = this.props.location;
     const { attributes,sort,dir,price } = query;
     return (
-      <ProductBox url={"https://charlie.orami.co.id/api/categories/"+ idcategory + "/products" } perPage={5} qsort={sort} qdir={dir} att={attributes} qprice={price} catpath={pathname} />
+      <ProductBox url={"https://charlie.orami.co.id/api/categories/"+ idcategory + "/products" } perPage={5} qsort={sort} idcat={idcategory} qdir={dir} att={attributes} qprice={price} catpath={pathname} />
       
     )
   }

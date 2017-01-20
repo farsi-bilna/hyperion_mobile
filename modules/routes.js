@@ -7,14 +7,14 @@ import Category from './Category'
 import Product from './ProductDetail'
 import Search from './Search'
 import Searchresult from './Searchresult'
-import Repos from './Repos'
+import CatList from './CatList'
 import Repo from './Repo'
 import Home from './Home'
 
 module.exports = (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
-    <Route path="/repos" component={Repos}>
+    <Route path="/repos" component={CatList}>
       <Route path="/repos/:userName" component={Repo}/>
     </Route>
     <Route path="/about" component={About}/>

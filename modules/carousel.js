@@ -29,33 +29,17 @@ var CarouselList = React.createClass({
 });
 
 var CarouselHome = React.createClass({
-  loadProductsFromServer: function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      success: function(data) {
-        this.setState({
-          data: data.slider
-        });
-      console.log(data);
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
   getInitialState: function() {
     return {data: []};
   },
   componentDidMount: function() {
-    this.loadProductsFromServer();
-    {/*fetch(this.props.url)
+    fetch(this.props.url)
             .then( (response) => {
                 return response.json() })   
                     .then( (data) => {
                         this.setState({data: data.slider});
                         //console.log(data);
-                    });*/}
+                    });
   },
   render: function() {
     if (this.state.data) {

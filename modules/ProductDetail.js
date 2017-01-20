@@ -25,33 +25,29 @@ import Glyphicon from 'react-bootstrap/lib/Glyphicon'
 
 var ProductBox = React.createClass({
   loadProductsFromServer: function() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      cache: false,
-      success: function(data) {
-        this.setState({
-          data: data,  
-          detailInfo : data.detail_info,
-          brand:data.brand,
-          image:data.image_list,
-          ratting:data.rating,
-          price:data.price,
-          warehouse:data.warehouse,
-          vendor:data.vendor
-        });
-        console.log(data.detail_info);
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    fetch(this.props.url)
+            .then( (response) => {
+                return response.json() })   
+                    .then( (data) => {
+                        this.setState({
+                          data: data,  
+                          detailInfo : data.detail_info,
+                          brand:data.brand,
+                          image:data.image_list,
+                          ratting:data.rating,
+                          price:data.price,
+                          warehouse:data.warehouse,
+                          vendor:data.vendor
+                        });
+                        //console.log(data);
+                    });
   },
   getInitialState: function() {
     return {data: [], image : [], detailInfo:[],brand:[],price:[],ratting:[],warehouse:[], vendor:[]};
   },
   componentDidMount: function() {
     this.loadProductsFromServer();
+    
   },
   render: function() {
     if (this.state.data) {

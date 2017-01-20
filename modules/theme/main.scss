@@ -101,6 +101,19 @@ body{
 	display:block;
 	clear:both;
 	padding-top:20px;
+  .sorting{
+    text-align:center;
+    padding:10px 0;
+    background:#fff;
+    margin-bottom:5px;
+  }
+  .filterbox{
+    max-height:100px;
+    overflow-y: auto;
+    background: #fff;
+    padding:10px 15px;
+    margin-bottom: 5px;
+  }
 }
 .prod-widget-horizontal {
   width: 100%;
