@@ -52,5 +52,5 @@ function renderPage(appHtml) {
 }
 var PORT = process.env.PORT || 8080
 app.listen(PORT, function() {
-  console.log('Production Express server running at localhost:' + PORT)
+  console.log('Production Express server running at 127.0.0.1:' + PORT)
 })
