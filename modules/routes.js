@@ -14,9 +14,7 @@ import Home from './Home'
 module.exports = (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
-    <Route path="/repos" component={CatList}>
-      <Route path="/repos/:userName" component={Repo}/>
-    </Route>
+    <Route path="/categorylist" component={CatList}/>
     <Route path="/about" component={About}/>
     <Route name="productList" path="/category/:idcategory" component={Category}/>
     <Route path="/product/:idproduct" component={Product}/>

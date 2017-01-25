@@ -22,7 +22,7 @@ var PageHeader = React.createClass({
           <Glyphicon glyph="menu-hamburger" onClick={this.handleOpen}  />
           <NavLink to="/" onlyActiveOnIndex>
             <Logo /></NavLink>
-            <div className="direktori"><NavLink to="/repos">{this.props.title}</NavLink></div>
+            <div className="direktori"><NavLink to="/categorylist">{this.props.title}</NavLink></div>
             <p>{this.props.subTitle}</p>
           </div>
           <div className="right-header">
