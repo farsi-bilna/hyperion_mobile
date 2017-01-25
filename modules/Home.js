@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductBox from './FeaturedProd';
-import CarouselHome from './carousel';
+import CarouselHome from './Carousel';
 
 
 export default React.createClass({

@@ -1,7 +1,7 @@
 import React from 'react'
 import Remarkable from 'remarkable'
 import NavLink from './NavLink'
-import CarouselPD from './ProdDetailsComponent/carouselimage'
+import CarouselPD from './ProdDetailsComponent/Carouselimage'
 import Media from 'react-bootstrap/lib/Media';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Glyphicon from 'react-bootstrap/lib/Glyphicon'
