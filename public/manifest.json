@@ -3,7 +3,7 @@
   "name": "Catalog for orami product",
   "icons": [
     {
-      "src": "orami-icon4.png",
+      "src": "orami-icon3x.png",
       "type": "image/png",
       "sizes": "165x165"
     }
