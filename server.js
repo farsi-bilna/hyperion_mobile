@@ -51,6 +51,6 @@ function renderPage(appHtml) {
    `
 }
 var PORT = process.env.PORT || 8080
-app.listen(PORT, function() {
+app.listen(PORT, '0.0.0.0', function() {
   console.log('Production Express server running at 127.0.0.1:' + PORT)
 })
