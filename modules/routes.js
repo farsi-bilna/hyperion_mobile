@@ -21,6 +21,6 @@ module.exports = (
     <Route name="productList" path="/category/:idcategory" component={Category}/>
     <Route path="/product/:idproduct" component={Product}/>
     <Route path="/search" component={Search}/>
-    <Route path="/search/searchresult/:qstring" component={Searchresult}/>
+    <Route path="/search/searchresult/:qstring" component={SearchResult}/>
   </Route>
 )
