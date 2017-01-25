@@ -14,9 +14,6 @@ var Product = React.createClass({
   getInitialState: function() {
     return {active: false};
   },
-  handleToggle : function() {
-    this.setState({active: !this.state.active});
-  },
   render: function() {
     const isNew = this.props.new;
     let newlabel = null;
@@ -74,7 +71,6 @@ var ProductBox = React.createClass({
     let selected = data.selected;
     let page = Math.ceil(selected + 1);
     console.log("page"+page + "; selected= "+selected);
-
     this.setState({page: page}, () => {
       this.loadProductsFromServer();
     });
@@ -96,6 +92,7 @@ var ProductBox = React.createClass({
     });
   },
   render: function() {
+    console.log(this.state.filteratt);
     return (
       <div className="ProductList category-page">
         <div className="tag-title">
@@ -109,7 +106,7 @@ var ProductBox = React.createClass({
             <NavLink to={{pathname: this.props.catpath, query:{dir:"Desc"} }} onClick={(e)=>this.descHandle(e)} >Desc</NavLink>
           </div>
         </div>
-        <Filtercategory datafilteratt={this.state.filteratt} catpath = {this.props.catpath}/>
+        <Filtercategory datafilteratt={this.state.filteratt} url={this.props.url} catpath = {this.props.catpath}/>
         <ProductList data={this.state.data} />
         <ReactPaginate previousLabel={"previous"}
                        nextLabel={"next"}
@@ -155,44 +152,76 @@ var filterprice = React.createClass({
   }
   
 })
+const CheckboxOrRadioGroup = React.createClass({ 
+  render: function() { 
+    return(
+      <div className="filterbox">
+        <label className="form-label">{this.props.title}</label>
+        <div className="checkbox-group">
+          {this.props.options.map(opt => {
+            return (
+              <div>
+              <label key={opt.value} className="form-label capitalize">
+                <input
+                  className="form-checkbox"
+                  name={this.props.setName}
+                  onChange={this.props.controlFunc}
+                  value={opt.value}
+                  checked={ this.props.selectedOptions.indexOf(opt) > -1 }
+                  type={this.props.type} /> {opt.value}
+              </label>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+});
+
 var Filtercategory = React.createClass({
-  handlerfilterSubmit: function (e) {
-    e.preventDefault();
-    console.log(this.refs.check_me.checked);
-    alert(this.state.attributes);
+  getInitialState: function() {
+    return {selectedCheck: [],selectedCheckName: []};
+  },
+  CheckboxSelection(e) {
+    const newSelection = e.target.value;
+    const newSelectionName = e.target.name;
+    let newSelectionNameArray;
+    let newSelectionArray;
+    let i = 0;
+    newSelectionNameArray = [...this.state.selectedCheckName, newSelectionName];
+    console.log(newSelectionNameArray.length);
+    for (i=0; i < this.state.selectedCheckName; i++){  
+      if (newSelectionArray.indexOf(newSelectionName) > -1){
+        newSelectionArray = this.state.selectedCheck.filter(s => s !== newSelection);
+      }else{
+        newSelectionNameArray[i] = [...this.state.selectedCheck, newSelection];
+      }
+    }
+    console.log(" attcode : "+ newSelectionNameArray);
   },
   render: function() {
     const catpath = this.props.catpath;
-    //console.log(catpath);
     if (this.props.datafilteratt) {
+      let n = 0;
       var filterNodes = this.props.datafilteratt.map(function(filteratt, index) {
-      //console.log(filteratt);
-        if (filteratt.data) {
-          var filterchildNodes = filteratt.data.map(function(data, index) {
-          //console.log(attchild);
-            return (
-            <div>
-                <label><input type="checkbox" ref="check_me" value={data.value} /> {data.value}</label>
-            </div>
-            );
-          });
-        }
         return (
           <div className=" filterbox">
-          {filteratt.code}
-          {filterchildNodes}
-          
+            <CheckboxOrRadioGroup
+          title={filteratt.code}
+          setName={filteratt.code}
+          type={'checkbox'}
+          controlFunc={this.CheckboxSelection}
+          options={filteratt.data}
+          selectedOptions={this.state.selectedCheck} />
           </div>
         );
-      });
+      }, this);
     }
     return(
-      <form onSubmit={this.handlerfilterSubmit}>
-        <div className="productfilter">
-          {filterNodes}
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
+      <div className="productfilter">
+        {filterNodes}
+      </div>
     )
   }
 });
