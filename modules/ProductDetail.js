@@ -61,7 +61,7 @@ var ProductBox = React.createClass({
         stok = <span><strong>In stok</strong></span>
       }
       var tabsContent = this.state.detailInfo && Object.values(this.state.detailInfo).map(function(tabdata, index) {
-        console.log(tabdata);
+        //console.log(tabdata);
         return (
             <TabPanel>
               {tabdata}

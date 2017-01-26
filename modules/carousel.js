@@ -23,7 +23,7 @@ var CarouselList = React.createClass({
               return <div key={index}><img src={image.image} /></div>
           })}
       </Slider>
-       : <div className="placeholder"> No Posts </div> }
+       : <div className="placeholder"> No Image </div> }
        </div>
     );
   }

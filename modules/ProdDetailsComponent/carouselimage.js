@@ -5,13 +5,6 @@ import Slider from 'react-slick'
 
 var CarouselList = React.createClass({
   render: function () {
-    if (this.props.data.label){
-      var carouselNodes = this.props.data.map(function(image, index){
-        return (
-            <div key={index}><img src={image.image_resize.detail} /></div>
-        );
-      });
-    }
     var settings = {
       dots: false,
       infinite: true,
@@ -21,9 +14,15 @@ var CarouselList = React.createClass({
       slidesToScroll: 1
     };
     return (
+      <div>
+      {this.props.data.length > 0 ? 
       <Slider {...settings}>
-          {carouselNodes}
+          {this.props.data.map(function (image, index) {
+              return <div key={index}><img src={image.image_resize.detail} /></div>
+          })}
       </Slider>
+       : <div className="placeholder"> No Image </div> }
+       </div>
     );
   }
 });
