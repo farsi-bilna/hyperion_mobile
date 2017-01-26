@@ -4,13 +4,8 @@ import Fetch from 'react-fetch'
 
 var CarouselList = React.createClass({
   render: function () {
-    var carouselNodes = this.props.data.map(function(image, index){
-    console.log(image.image);
-      return (
-          <div key={index}><img src={image.image} /></div>
-      );
-    });
-    var settings = {
+    
+    const settings = {
       dots: false,
       infinite: true,
       arrows: false,
@@ -19,11 +14,17 @@ var CarouselList = React.createClass({
       slidesToScroll: 1,
       adaptiveHeight: false
     };
-    console.log(this.props.data);
+    console.log("this"+this.props.data.length);
     return (
+      <div>
+      {this.props.data.length > 0 ? 
       <Slider {...settings}>
-          {carouselNodes}
+          {this.props.data.map(function (image, index) {
+              return <div key={index}><img src={image.image} /></div>
+          })}
       </Slider>
+       : <div className="placeholder"> No Posts </div> }
+       </div>
     );
   }
 });
