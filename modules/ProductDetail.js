@@ -58,11 +58,11 @@ var ProductBox = React.createClass({
       if (this.state.data.is_new) {
         newlabel = <span className="prod-att new-product">New</span>
       }
-      console.log(this.state.detailInfo);
+      console.log(this.state.detailInfo.description);
       if (this.state.data.is_in_stock){
         stok = <span><strong>In stok</strong></span>
       }
-      var tabsContent =  Object.values(this.state.detailInfo) && Object.values(this.state.detailInfo).map(function(tabdata, index) {
+      var tabsContent =  Object.values(this.state.detailInfo).map(function(tabdata, index) {
         console.log();
         return (
         <div className="wraping_card bg_white pull _all push _pushtop"
@@ -96,8 +96,9 @@ var ProductBox = React.createClass({
           <div className="wraping_card bg_white pull _all push _pushtop"
              dangerouslySetInnerHTML={{__html: this.state.data.short_desc }}>
           </div>
-            {tabsHeader}
-            {tabsContent}
+          <div className="wraping_card bg_white pull _all push _pushtop"
+              dangerouslySetInnerHTML={{__html: this.state.detailInfo.description }}>
+        </div>
         </div>
       );
     }
