@@ -1,0 +1,16 @@
+@import "var.scss";
+.label{
+	padding:3px 10px;
+  	@include border-radius(2px);
+  	color:#fff;
+  	margin-right:10px;
+  	&.brand{
+  		background:$blue-base;
+  	}
+  	&.new{
+  		background:$green-base;
+  	}
+}
+.productname{
+	font-size:16px;
+}

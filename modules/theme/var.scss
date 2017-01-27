@@ -1,0 +1,10 @@
+$grey-base : #e0e0e0;
+$green-base: #66c590;
+$blue-base : #4abbff;
+
+@mixin border-radius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+  -ms-border-radius:     $radius;
+  border-radius:         $radius;
+}

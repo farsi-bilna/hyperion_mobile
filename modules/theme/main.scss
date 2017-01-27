@@ -1,10 +1,16 @@
 @import "reset.scss";
+@import "var.scss";
+
 .active {
   color: green;
 }
 
 body{
 	background: #f5f5f1 !important;
+}
+p{
+  font-size:13px;
+  margin-bottom:5px;
 }
 .drawer_wrap{
   background:#fff;
@@ -115,6 +121,49 @@ body{
     margin-bottom: 5px;
   }
 }
+ul{
+  padding-left:15px;
+  margin-bottom:10px;
+  li{
+
+  }
+}
+/*=========== helper class ==============*/
+hr{
+  margin:5px 0;
+}
+.bg_white{
+  background:#fff;
+}
+.wraping_card{
+  border:1px solid $grey-base;
+  @include border-radius(2px);
+}
+.pull{
+  &._all{
+    padding:10px;
+  }
+  &._top{
+    padding-top:10px;
+  }
+  &._bottom{
+    padding-bottom:10px;
+  }
+}
+
+.push{
+  &._pushall{
+    margin:10px;
+  }
+  &._pushtop{
+    margin-top:10px;
+  }
+  &._pushbottom{
+    margin-top:10px;
+  }
+}
+/*========= end helper class ============*/
+
 .prod-widget-horizontal {
   width: 100%;
   display: table;

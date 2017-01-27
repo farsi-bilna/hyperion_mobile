@@ -35,7 +35,11 @@ module.exports = (
 
 ## modules
 
-https://www.npmjs.com/package/react-motion-drawer
+- https://www.npmjs.com/package/react-motion-drawer
+- https://www.npmjs.com/package/react-fetch
+- https://github.com/AdeleD/react-paginate
+- https://www.npmjs.com/package/react-slick-paging
+- https://www.npmjs.com/package/react-addons-create-fragment
 
 
 
