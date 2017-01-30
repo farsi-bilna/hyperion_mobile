@@ -16,7 +16,7 @@ var PageHeader = React.createClass({
   render() {
     return (
       <div className="header" id="content">
-        <div className="container">
+        <div className="container main_header">
           <div className="left-header">
 
           <Glyphicon glyph="menu-hamburger" onClick={this.handleOpen}  />
@@ -30,13 +30,33 @@ var PageHeader = React.createClass({
             <NavLink to="/search">Search</NavLink>
           </div>
         </div>
-        <Drawer open={this.state.active}  onChange={open => this.setState({ active: open})}>
+        <Drawer open={this.state.active} width={250} onChange={open => this.setState({ active: open})}>
           <div className="drawer_wrap">
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Settings</li>
-          </ul>
+            <div className="container">
+              <div className="header-drawer push _pushtop">
+                <p><strong className="welcome">Selamat Datang!</strong><br/>
+                <span className="pull _top _bottom block ">Belanja Lebih Cepat, lacak pesanan, dan dapatkan promo ekslusif</span>
+                
+                <NavLink className="text_center block login_link pull _top _bottom"> Daftar / Masuk ke akun Orami</NavLink> </p>
+                
+              </div>
+            </div>
+            <hr/>
+            <div className="container">
+              <ul>
+                <li className="push _pushtop _pushbottom">Beranda</li>
+                <li className="push _pushtop _pushbottom">Pesanan Saya</li>
+                <li className="push _pushtop _pushbottom">Daftar Belanja</li>
+              </ul>
+            </div>
+            <hr/>
+            <div className="container">
+              <ul>
+                <li className="push _pushtop _pushbottom">Kategori Belanja</li>
+                <li className="push _pushtop _pushbottom">Zona Diskon</li>
+                <li className="push _pushtop _pushbottom">Pilihan Editor</li>
+              </ul>
+            </div>
           </div>
         </Drawer>
       </div>

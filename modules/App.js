@@ -3,6 +3,7 @@ import NavLink from './NavLink'
 import PageHeader from './PageHeader';
 //import AppBar from './appBar.js';
 var css = require("./theme/main.scss");
+var css = require("./theme/header.scss");
 
 {/*if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js', {scope: './'})

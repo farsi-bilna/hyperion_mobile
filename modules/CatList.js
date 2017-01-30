@@ -73,16 +73,16 @@ var CategoryList = React.createClass({
   render: function() {
     var productNodes = this.props.data.map(function(categorymenu, i) {
       return (
-      <ListGroupItem key={i}>
-        <NavLink to={'/category/'+categorymenu.id}>{categorymenu.name}</NavLink>
+      <li key={i}>
+        <NavLink className="push _pushall" to={'/category/'+categorymenu.id}>{categorymenu.name}</NavLink>
         {/*<CategoryList2 data={categorymenu.child} />*/}
-      </ListGroupItem>
+      </li>
       );
     });
     return (
-      <ListGroup>
+      <ul className="catlist">
         {productNodes}
-      </ListGroup>
+      </ul>
     );
   }
 });
@@ -90,8 +90,8 @@ var CategoryList = React.createClass({
 export default React.createClass({
   render() {
     return (
-      <div>
-        <h2>Direktori</h2>
+      <div className="container">
+        <h2 className="push _pushtop _pushbottom">Direktori</h2>
 
         <CategorymenuBox url="https://charlie.orami.co.id/api/home/megamenu"  />
         
